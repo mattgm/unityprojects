@@ -1,0 +1,90 @@
+hw11
+
+1.)
+
+a.) 0x1D47
+11101010 001 11
+CT: 0xEA
+CI: 0x1
+CO: 0x3
+Result: Cache miss
+
+
+b.) 0x1D6D
+11101011 011 01
+CT: 0xEB
+CI: 0x3
+CO: 0x1
+Result: Cache miss
+
+c.) 0x1D69
+11101011 010 01
+CT: 0xEB
+CI: 0x2
+CO: 0x1
+Result: Cache miss
+
+d.) 0x1D4C
+11101010 011 00
+CT: 0xEA
+CI: 0x3
+CO: 0
+Result: Cache miss
+
+e.) 0x1D45
+11101010 001 01
+CT: 0xEA
+CI: 0x1
+CO: 0x1
+Result: Cache miss
+
+6.23
+T-rotation = .5 * (60/15000) * 1000= 2
+T-transfer = (60/15000) * (1/800) * 1000 = .005
+T-access = 4 + 2 + .005 = 6.005
+
+6.28
+A.) No memory addresses will hit because the valid bit is 0
+B.) 1100011101000
+0x18E8
+0x18E9
+0x18EA
+0x18EB
+C.) 111000110100
+0x0E34
+0x0E35
+0x0E36
+0x0E37
+D.) None, valid bit is zero
+
+6.29
+A.) CT CT CT CT CT CT CT CT CI CI CO CO CO
+
+B.)
+(i) 0100000110100 - 41 2 4 - No Hit
+(ii) HIT 
+(iii) MISS
+
+6.30
+A.) C = 4 * 4 * 8 = 128
+B.) CT CT CT CT CT CT CT CT CI CI CI CO CO
+
+6.36
+A.) 100%
+B.) 25%
+C.) 25%
+D.) No because it is two way associative
+E.) Yes because more data will be allocated on each line
+
+
+
+
+
+
+
+
+
+
+
+
+

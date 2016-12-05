@@ -1,0 +1,117 @@
+hw9.txt
+
+1. 
+
+a.) nop
+
+Fetch:
+	icode:ifun <- M1[PC]   //read instruction
+	valP <- PC + 1		   //compute next PC
+Decode:
+	//Nothing to decode
+Execute:
+	//Nothing to execute
+PC Update:
+	PC <- valP
+
+b.) mrmovq
+
+Fetch:
+	icode:ifun <- M1[PC]	//read instruction
+	rA <- M1[PC+1]			//read register 
+	valC <- M8[PC + 2]		//read displacement
+	valP <- PC + 10			//compute next PC
+Decode:
+	valA <- R[rA]			//read op A
+	valB <- R[rB]			//read op B
+Execute:
+	valE <- valA + valC		//Compute effective address
+Memory:
+	M8[valE] <- valA		//write value to memory
+Write back:
+PC Update: PC <- valP
+
+c.) irmovq
+
+Fetch:
+	icode:ifun <- M1[PC]
+	rA:rB <- M1[PC+1]
+	valC <- $x
+	valP <- PC + 6
+Decode:
+	valA <- R[rA]
+Execute:
+	valE <- valA + valC
+Memory:
+	M8[valE] <- valA
+PC Update:
+	PC <- valP
+
+d.) pushq
+
+Fetch:
+	icode:ifun <- M1[PC]
+	rA:rB <- M1[PC+1]
+	valP <- PC + 2
+Decode:
+	valA <- rA
+	valB <- rB
+Execute:
+	M8[%rsp] <- rA
+PC Update:
+	PC <- PC + 2
+
+
+3.69.
+a.) 
+bp + 4 + 20CNT = bp + 184
+CNT = 9
+
+b.)
+typedef struct {
+	int idx;
+	int x[4];
+} a_struct;
+
+
+3.70.
+a.)
+e1.p: 0
+e1.y: 4
+e2.x: 0
+e2.next: 4
+
+b.)
+8 bytes
+
+c.)
+void porc (union ele *up) {
+	up->e2.next->e1.p = *(up->e2.next->e1.p) - up-> e2.x;
+
+}
+
+
+4.45
+a.) No because it doesn't increment the stack pointer before data at the old top of the stack is written into the destination
+
+b.)
+leal 4(%esp), %esp
+movl -4(%esp), REG
+
+
+4.47
+
+a.)
+
+void bubble_a(long *data, long count) {
+	long i, last;
+	for (last = count-1; last > 0; last--) {
+		if (*(data + i + 1) < *(data + i)) {
+			long t = *(data + i + 1);
+			*(data + i + 1) = *(data + i);
+			*(data + i) = t;
+		}
+	}
+}
+
+

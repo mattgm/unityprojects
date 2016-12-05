@@ -1,0 +1,43 @@
+	.pos 0
+init:	irmovq Stack, %rsp
+		irmovq %rsp, %rbp
+		jmp Main
+
+
+Main:	irmovq	ele1, %rdx
+		pushq	%rdx
+		call	Sum
+		halt
+
+.align 8
+	ele1:
+		.quad 0x00a
+		.quad ele2
+	ele2:
+		.quad 0x0b0
+		.quad ele3
+	ele3:
+		.quad 0xc00
+		.quad 0
+
+Sum:	pushq	%rbp
+		xorq	%rax, %rax
+		rrmovq	%rsp, %rbp
+		mrmovq	8(%rbp), %rdx
+		andq	%edx, %edx
+		je 		L4
+
+L5:
+		mrmovq	(%rdx), %rsi
+		addq	%rsi, %rax
+		mrmovq	4(%rdx), %rdx
+		andq	%edx, %edx
+		jne		L5
+
+L4:
+		rrmovq	%rbp,%rsp
+		popq	%rbp
+		ret
+
+	.pos 0x100
+Stack: 

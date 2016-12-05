@@ -1,0 +1,89 @@
+HW 8
+
+1.)
+w in rdx, x in rdi, y in rsi, z in rcx
+
+adds %rdx, %rdi
+adds %rdi, %rsi
+adds %rdi, %rcx
+adds %rcx, %rax
+retq 
+
+
+3.65
+A. M = 13
+B. i is held in edi
+   j is held in ecx
+
+C.
+void transpose(int (*a)[M]) {
+	int i;
+	int j;
+	int *x = a[1];
+	for (i = 1; i < M; i++) {
+		int *y = &a[0][i];
+		for (j = 0; j < i; j++) {
+			int tmp = x[j];
+			x[j] = *y;
+			*y = tmp;
+			y += M;
+		}
+		x += m;
+	}
+}
+
+3.68
+3B + 4 = 40
+2AB = 96
+So A = 4, B = 12
+
+4.) 
+￼
+proc :
+
+movl $0, %edx				#Puts count and i into registers with values 0
+movl $0, %eax
+jmp  .L2					
+  
+.L4 :
+movslq %edx , %rcx			#moves to for loop
+testb  $1, (%rdi,%rcx,8)	#tests if a[i] < count
+jne .L3						#jumps to l3 if true
+addq $1, %rax				#count++
+￼
+￼.L3 : 
+addl $1, %edx				#add 1 to i
+
+.L2 :￼
+movslq %edx , %rcx			#puts i in register
+cmpq %rsi , %rcx			#compares i and len	
+jl .L4						#jumps to l4
+retq 						#returns count
+
+B. 
+
+long proc(long a[], long len) {
+	long count = 0;
+	int i;
+
+	for ( i = 0; i < len; i++) {
+		if (a[i] != i) {
+			count++;
+		}
+	}
+	return count;
+}
+
+C.
+Checks if an element of an array is the same as its index
+
+
+
+
+
+
+
+
+￼
+￼
+ret

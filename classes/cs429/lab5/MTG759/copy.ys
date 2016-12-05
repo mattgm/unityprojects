@@ -1,0 +1,51 @@
+	irmovq	Stack,%rsp
+	rrmovq	%rsp,%rbp
+	irmovq	$3,%rbx
+	pushq	%rbx
+	irmovq	dest,%rbx
+	pushq	%rbx
+	irmovq	src,%rbx
+	pushq	%rbx
+	call	copy_block
+	halt
+
+.align 8
+# Source block
+src:
+        .quad 0x00a
+        .quad 0x0b0
+        .quad 0xc00
+# Destination block
+dest:
+        .quad 0x111
+        .quad 0x222
+        .quad 0x333
+
+copy_block:
+		pushq	%rbp
+		rrmovq	%rsp,%rbp
+		xorq	%rsi,%rsi
+		mrmovq	16(%rbp),%rbx
+		mrmovq	24(%rbp),%rcx
+		mrmovq	32(%rbp),%rdx
+		andq	%rdx,%rdx
+		jle		L4
+L5:
+		mrmovq	(%rbx),%rax
+		irmovq	$1,%rdi
+		subq	%rdi,%rdx
+		rmmovq	%rax,(%rcx)
+		irmovq	$8,%rdi
+		addq	%rdi,%rbx
+		addq	%rdi,%rcx
+		xorq	%rax,%rsi
+		andq	%rdx,%rdx
+		jg		L5
+L4:
+		rrmovq	%rsi,%rax
+		rrmovq	%rbp,%rsp
+		popq	%rbp
+		ret
+
+.pos0x100
+Stack:

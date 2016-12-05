@@ -1,0 +1,83 @@
+/*Discussion Section Problem Set #: 3
+Student Name: Matt Gmitro
+EID: mtg759
+CS login: mattgm	
+Email address: mattgmitro@utexas.edu
+Unique Number: 51475
+
+1.
+A will finish in Q1, since it blocks every 2 seconds
+B will finish in Q4
+C will finish in Q3
+
+2. 
+Kernel threads are most common now and are managed by the OS
+Users manage user level threads at run time 
+
+3. 
+#include <stdio.h>
+#include <pthread.h>
+#include <stdlib.h>
+
+void *threadPrint(void *);
+
+int STARTNUM = 1;
+int ENDNUM = 10;
+
+int main() {
+    int tnum = 1, tnum1 = 2, tnum2 = 3;
+    pthread_t tid;
+    pthread_create(&tid, NULL, threadPrint, &tnum);
+    pthread_t tid1;
+    pthread_create(&tid1, NULL, threadPrint, &tnum1);
+    pthread_t tid2;
+    pthread_create(&tid2, NULL, threadPrint, &tnum2);
+    
+    pthread_join(tid, NULL);
+    printf("tid (%d) is finished..\n", tnum);
+    pthread_join(tid1, NULL);
+    printf("tid (%d) is finished..\n", tnum1);
+    pthread_join(tid2, NULL);
+    printf("tid (%d) is finished..\n", tnum2);
+
+    return 0;
+}
+
+Output
+3: 1
+1: 1
+2: 1
+3: 2
+1: 2
+2: 2
+3: 3
+1: 3
+2: 3
+3: 4
+1: 4
+2: 4
+3: 5
+1: 5
+2: 5
+3: 6
+1: 6
+2: 6
+3: 7
+1: 7
+2: 7
+3: 8
+1: 8
+2: 8
+3: 9
+1: 9
+2: 9
+3:10
+1:10
+2:10
+
+Explaination
+Every thread executes it's own routine. The routines are asynchronous.
+
+4. 1 since the parent call is the only one printing. 
+
+5. 0 since both threads run.

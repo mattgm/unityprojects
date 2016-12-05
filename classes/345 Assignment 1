@@ -1,0 +1,31 @@
+Assignment 1
+
+1. Proof: Since B is in (V or (Sigma))+, we know it is a sentence of variables and terminals that is not empty. A is in V which means A is a symbol with length 1 in the alphabet of variables. Given aAy -> aBy, we know a and y stay the same length because they are unchanged. |B| can never be greater than |A| because A is a single symbol, whereas B is either 1 symbol or more. Thus, if we let aAy = x and aBy = w. x -> w will always satisfy |x| <= |w|. Because all productions are of the form aAy -> aBy, each production is increasing in length.
+
+2. a) First(V) = {x,,,{,(,ε}
+   b) Follow(V) = {$,},),,}
+   c) 
+   		x	(	)	{	}	,
+   	S 		B 		B
+   	B   			{L}
+   	P       (L) 
+   	L   xR      ε       ε   ε
+   	R   ,L      ε       ε   ε  
+
+   d) Parse tree:
+
+S
+B
+{ L }
+{ xR }
+{ x , L }
+{ x , S R }
+{ x , P R }
+{ x , ( L ) R }
+{ x , ( x R ) R}
+{ x , ( x , L ) R}
+{ x , ( x , x R ) R}
+{ x , ( x , x ) R}
+{ x , ( x , x ) , L }
+{ x , ( x , x ) , x R }
+{ x , ( x , x ) , x }
